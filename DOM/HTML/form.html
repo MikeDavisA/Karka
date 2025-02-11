@@ -10,9 +10,9 @@
         <label>Name:</label><br>
         <input type="text" id="name" placeholder="Enter your name"><br>
         <label>Gender:</label><br>
-        <input type="radio" id="gender" name="gender" value="Male">
+        <input type="radio" id="Male" name="gender" value="Male">
         <label for="gender">Male</label><br>
-        <input type="radio" name="gender" id="gender" value="Female">
+        <input type="radio" name="gender" id="Female" value="Female">
         <label for="gender">Female</label><br>
         <label>Email:</label><br>
         <input type="email" placeholder="Enter a valid mail ID eg: example@gmail.com" id="email"><br>
@@ -54,6 +54,9 @@
     <div id="div">
 
     </div>
+    <ol id="olist">
+
+    </ol>
     <script>
         function clickHandle(e){
             e.preventDefault()
@@ -61,21 +64,31 @@
             var email=document.getElementById("email").value
             var password=document.getElementById("password").value
             var mobile=document.getElementById("number").value
-            var gender=document.getElementById("gender").value
-            var drop=document.getElementById("drop").value
-            var skills=document.getElementsByName("skills")
-            let s=""
-            for(i=0;i<skills.length;i++){
-                if(skills[i].checked){
-                    s+=skills[i].value+","
+            var g=document.getElementsByName("gender")
+            var gender=""
+            for(i=0;i<g.length;i++){
+                if(g[i].checked){
+                    gender+=g[i].value
                 }
             }
+            var drop=document.getElementById("drop").value
             var d=document.getElementById("div")
-            var arr=[name, email, password, gender, mobile,drop, s]
+            d.innerHTML=""
+            var arr=[name, email, password, gender, mobile,drop]
             for(i=0;i<arr.length;i++){
                 h=document.createElement("h4")
                 h.innerHTML=arr[i]
                 d.appendChild(h)
+            }
+            var skills=document.getElementsByName("skills")
+            var list=document.getElementById("olist")
+            list.innerHTML=""
+            for(i=0;i<skills.length;i++){
+                if(skills[i].checked){
+                    var li=document.createElement("li")
+                    li.innerHTML=skills[i].value
+                    list.appendChild(li)
+                }
             }
         }
     </script>
